@@ -175,7 +175,7 @@ function stepperOne(ts) {
     
   }
 
-  // Request again
+  // Request again here
   window.requestAnimationFrame(stepperOne)
 
 }
