@@ -1,6 +1,19 @@
 const canvas = document.getElementById('myCanvas');
 const gl = canvas.getContext('webgl');
 
+const speedRange = document.getElementById('speedRange').value;
+console.log(speedRange);
+var finalSpeed = 0;
+var finalSpeed = speedRange*0.004;
+var finalOpacity = speedRange*0.014 + 0.3;
+function changeSpeed() {
+    const speedRange = document.getElementById('speedRange').value;
+    console.log(speedRange);
+    finalSpeed = speedRange*0.0003;
+    finalOpacity = speedRange*0.009 + 0.2;
+}
+
+
 if (!gl) {
     alert('Unable to initialize WebGL. Your browser may not support it.');
 }
@@ -71,8 +84,8 @@ const angleIncrement = (2 * Math.PI) / numSegments;
 
 for (let i = 0; i < numSegments; i++) {
     const angle = angleIncrement * i;
-    const x = Math.cos(angle) * 0.05; // Radius of 0.05 for a smaller circle
-    const y = Math.sin(angle) * 0.05;
+    const x = Math.cos(angle) * 0.09; // Radius of 0.05 for a smaller circle
+    const y = Math.sin(angle) * 0.08;
     circleVertices.push(x, y);
 }
 
@@ -91,10 +104,10 @@ function draw() {
     gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 
     // Set color for the blades
-    gl.uniform4fv(colorUniformLocation, [0.7, 0.4, 0.8, 0.8]);
+    gl.uniform4fv(colorUniformLocation, [0.1, 0.1, 0.9, finalOpacity]);
 
     // Calculate rotation angle (in radians)
-    const rotationAngle = performance.now() * 0.002; // Rotate at 1 radian per second
+    const rotationAngle = performance.now() * finalSpeed; // Rotate at 1 radian per second
 
     // Pass rotation angle to the shader
     gl.uniform1f(rotationUniformLocation, rotationAngle);
@@ -104,7 +117,7 @@ function draw() {
 
     // Draw circle
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circleVertices), gl.STATIC_DRAW);
-    gl.uniform4fv(colorUniformLocation, [0.2, 0.2, 0.2, 1.0]); // Darker color for the circle
+    gl.uniform4fv(colorUniformLocation, [0.3, 0.3, 0.6, 1.0]); // Darker color for the circle
     gl.drawArrays(gl.TRIANGLE_FAN, 0, circleVertices.length / 2);
 
     // Request next frame
