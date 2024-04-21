@@ -143,10 +143,8 @@ class Experiment {
     document.querySelector('#side-note')
       .classList.add('hidden')
   }
-  
 }
 
 // Initialize and run the experiment
 const experiment = new Experiment();
 experiment.run();
-experiment.runSteppers();
