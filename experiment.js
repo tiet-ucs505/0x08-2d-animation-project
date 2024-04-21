@@ -13,7 +13,7 @@ class Experiment {
     // Hide Steppers
     this.hideSteppers()
     canvasSetup(this.canvasSel)
-
+    
     // Clock
     // --------------------------------------------------
    
