@@ -24,10 +24,17 @@
 
 }
 #windSpeedHeader {
-    font-size: 24px; /* Adjust the font size as needed */
+    font-size: 24px; 
+    padding:5px;
+    background-color: rgb(0, 242, 1);
+    color: white;
 }
 #text1 {
-    font-size: 20px; /* Adjust the font size as needed */
+    font-size: 20px;
+    color:white;
+    font-weight: 500; 
+    padding:5px; 
+    background-color: rgb(0, 242, 1);
 }
         </style>
 </head>
@@ -46,10 +53,10 @@
       gap-4 lg:gap-8">
       
                         <div style="margin-top: 300px; margin-left: 100px;">
-                            <h2 id="text1" style="padding:5px;color: white;">min ------------->max</h2>
+                            <h2 id="text1">Min -------------->Max</h2>
                                 <input type="range" class="form-range" min="0" max="100" step="2" id="speedRange"
                                         name="speedRange" onclick="changeSpeed()" value="0" style="width: 200px;">
-                                <h2 id="windSpeedHeader" style=" padding:5px;background-color: rgb(1, 102, 1);color: white;">Change wind speed</h2>
+                                <h2 id="windSpeedHeader">Change wind speed</h2>
                         </div>
                         <main class="experiment  flex-1 flex flex-col gap-2">
                                 <div class="flex-1 relative" style="margin-left: 300px; margin-top: 100px;">
