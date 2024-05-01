@@ -3,21 +3,10 @@ class Experiment {
   static rollNos = '102103157,102103178'
   static names = 'The Pheonix(Alok Shree Koirala, Shree Krihna Singla)'
 
-  canvasSel = '#myCanvas'
+  canvasSel = '#myCanvas' 
 
-  run() {
+  run(){
 
-    // Run the Steppers
-    // this.runSteppers()
-
-    // Hide Steppers
-    this.hideSteppers()
-    canvasSetup(this.canvasSel)
-    
-    // Clock
-    // --------------------------------------------------
-   
-    
   }
 
   runSteppers() {

@@ -1,59 +1,77 @@
 <!DOCTYPE html>
 <html class="hh-full w-full">
+
 <head>
         <title>0x08 : 2D Animations (Project)</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <style>
-          h2{
-          color:red;
-          }
-          body {
-    height: fit-content;
-    margin-bottom: 0;
-    background: rgb(221, 220, 220);
-}
+         body {
+        background-image: url('backimg2.jpg');
+        background-size: cover; /* This will make the image cover the entire background */
+    background-position: center; /* This will center the background image */
+    background-repeat: no-repeat;
+         }
+            img {
+  position: absolute;
+  
+  z-index: -1;
 
+}
+#windSpeedHeader {
+    font-size: 24px; /* Adjust the font size as needed */
+}
+#text1 {
+    font-size: 20px; /* Adjust the font size as needed */
+}
         </style>
 </head>
+
 <body class="h-full w-full text-sm">
-    <div class="container flex flex-col nowrap gap-2
-    p-8 h-full m-auto" >
-    <header class="flex flex-col md:flex-row justify-between md:items-end" >
-        <h1 class="flex-none text-2xl font-bold">0x08 :
-          2D Animations (Project)</h1>
-      </header>
-      <div class="flex-1 flex flex-col lg:flex-row
-      gap-4 lg:gap-8" > 
-      <div style="margin-top: 300px; margin-left: 100px;">
-        <input type="range" class="form-range" min="0" max="100" step="1" id="speedRange" name="speedRange" onclick="changeSpeed()" value="0"
-        style="width: 200px;">
-        <h2 style="text-indent: 20px;">Drag the slider</h2>
-      </div>
-      <main class="experiment  flex-1 flex flex-col gap-2">
-        <div class="flex-1 relative" >
-    <canvas id="myCanvas" width="650" height="600"  ></canvas>
-    
-  </main>
-  <script src="script.js"></script>
-    
-      </div>
-    </div>
-    <script type="text/javascript"
-            src="./canvas-helpers.js"></script>
-    <!-- <script type="text/javascript"
+        <div class="container flex flex-col nowrap gap-2
+    p-8 h-full m-auto">
+                <header class="flex flex-col md:flex-row justify-between md:items-end">
+                        <h1 class="flex-none text-2xl font-bold">0x08 :
+                                2D Animations (Project)</h1>
+                        <p class="md:text-right text-xs md:text-sm" id="by">
+                            Created by <b>The Pheonix </b> <br>102103157 : Alok Shree Koirala &nbsp| &nbsp 102103178 : Shree Krishan Singla
+                        </p>
+                </header>
+                <div class="flex-1 flex flex-col lg:flex-row
+      gap-4 lg:gap-8">
+      
+                        <div style="margin-top: 300px; margin-left: 100px;">
+                            <h2 id="text1" style="padding:5px;color: white;">min ------------->max</h2>
+                                <input type="range" class="form-range" min="0" max="100" step="2" id="speedRange"
+                                        name="speedRange" onclick="changeSpeed()" value="0" style="width: 200px;">
+                                <h2 id="windSpeedHeader" style=" padding:5px;background-color: rgb(1, 102, 1);color: white;">Change wind speed</h2>
+                        </div>
+                        <main class="experiment  flex-1 flex flex-col gap-2">
+                                <div class="flex-1 relative" style="margin-left: 300px; margin-top: 100px;">
+                                        
+                                        
+                                        <canvas id="myCanvas" width="450" height="450" ></canvas>
+                                        <div style="margin-top: -360px;margin-left: 145px;width: 600px; z-index: -100;">
+                                                <img src="girl.png" style="z-index: -100;">
+                                        </div>
+
+                        </main>
+                        <script src="script.js"></script>
+
+                </div>
+        </div>
+        <script type="text/javascript" src="./canvas-helpers.js"></script>
+        <!-- <script type="text/javascript"
             src="./steppers.js"></script>
     <script type="text/javascript"
             src="./domel.js"></script>
     <script type="text/javascript"
             src="./clock.js"></script> -->
-    <script type="text/javascript"
-            src="./experiment.js"></script>
-    <script type="text/javascript"
-            src="./main.js"></script>
-    <script type="text/javascript">
-      main()
-    </script>
+        <script type="text/javascript" src="./experiment.js"></script>
+        <script type="text/javascript" src="./main.js"></script>
+        <script type="text/javascript">
+                main()
+        </script>
 </body>
 </html>

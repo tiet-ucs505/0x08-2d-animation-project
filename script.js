@@ -41,6 +41,7 @@ const fsSource = `
     }
 `;
 
+
 // Create shader program
 const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
 const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
@@ -102,9 +103,12 @@ function draw() {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(allBlades), gl.STATIC_DRAW);
     gl.enableVertexAttribArray(positionAttributeLocation);
     gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.clearColor(0.0, 0.0, 0.0, 0.0); // RGBA: red, green, blue, alpha
 
+// Clear the color buffer with the specified clear color
+    gl.clear(gl.COLOR_BUFFER_BIT);
     // Set color for the blades
-    gl.uniform4fv(colorUniformLocation, [0.1, 0.1, 0.9, finalOpacity]);
+    gl.uniform4fv(colorUniformLocation, [1.0, 0.0, 0.0, finalOpacity]);
 
     // Calculate rotation angle (in radians)
     const rotationAngle = performance.now() * finalSpeed; // Rotate at 1 radian per second
@@ -117,7 +121,7 @@ function draw() {
 
     // Draw circle
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circleVertices), gl.STATIC_DRAW);
-    gl.uniform4fv(colorUniformLocation, [0.3, 0.3, 0.6, 1.0]); // Darker color for the circle
+    gl.uniform4fv(colorUniformLocation, [1.0,0.0,.00, 0.8]); // Darker color for the circle
     gl.drawArrays(gl.TRIANGLE_FAN, 0, circleVertices.length / 2);
 
     // Request next frame
