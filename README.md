@@ -5,3 +5,5 @@ We have built a simple, two-player, Air Hockey game in which one player will be 
 Whomsoever successfully scores 3 points first would be declared the winner and the game would end there.
 The game is primarily developed using HTML Canvas and Mouse handling events in JavaScript . For the computer part a simple AI algorithm is implemented.
 
+A WORKING DEMO OF OUR SITE IS AT:
+https://indrakshikilam.github.io/0x08-2d-animation-project/
