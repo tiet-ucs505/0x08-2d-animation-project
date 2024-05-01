@@ -12,7 +12,7 @@
 
 ## StoryBoard:
 ![alt text](https://github.com/alok059/computer-graphics/blob/main/Storyboard_f.png?raw=true)
-
-![alt text](https://github.com/alok059/computer-graphics/blob/main/Storyboard.png?raw=true)
+## Preview:
+![alt text](https://github.com/alok059/0x08-2d-animation-project/blob/master/project_screenshot.png?raw=true)
 
 
