@@ -1,87 +1,160 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full w-full">
-  <head>
-    <title>0x08 : 2D Animations (Project)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  </head>
-  <body class="h-full w-full text-sm">
-    <div class="container flex flex-col nowrap gap-2
+
+<head>
+  <title>0x08 : 2D Animations (Project)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #CDFADB;
+    }
+
+    .wrapper {
+      width: 65vmin;
+      height: 70vmin;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 5px;
+      background: #3a3c3e;
+      box-shadow: 0 20px 40px rgba(52, 87, 220, 0.2);
+    }
+
+    .game-details {
+      color: #B8C6DC;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 20px 27px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .play-board {
+      height: 100%;
+      width: 100%;
+      display: grid;
+      background: #F2EFE5;
+      grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+    }
+
+    .play-board .food {
+      background: #fa5c5c;
+      border-radius: 50%;
+    }
+
+    .play-board .head {
+      background: #525252;
+      border-radius: 50%;
+    }
+
+    .play-board .obstacle {
+      background: rgb(34, 177, 120) repeating-linear-gradient(45deg,
+          rgba(0, 0, 0, 0) 0px,
+          rgba(0, 0, 0, 0) 5px,
+          #ffffff 6px);
+    }
+
+    @media screen and (max-width: 800px) {
+      .wrapper {
+        width: 115vmin;
+        height: 125vmin;
+      }
+
+      .game-details {
+        font-size: 1rem;
+        padding: 15px 27px;
+      }
+    }
+  </style>
+</head>
+
+<body class="h-full w-full text-sm">
+
+  <div class="container flex flex-col nowrap gap-2
                 p-8 h-full m-auto">
-      <header class="flex flex-col md:flex-row justify-between md:items-end">
-        <h1 class="flex-none text-2xl font-bold">0x08 :
-          2D Animations (Project)</h1>
-        <p class="md:text-right text-xs md:text-sm" id="by"></p>
-      </header>
-      <div class="flex-1 flex flex-col lg:flex-row
+    <header class="flex flex-col md:flex-row justify-between md:items-end">
+      <h1 class="flex-none text-2xl font-bold">0x08 :
+        2D Animations (Project)</h1>
+      <p class="md:text-right text-xs md:text-sm" id="by"></p>
+    </header>
+    <div class="flex-1 flex flex-col lg:flex-row
                   gap-4 lg:gap-8">
-        <main class="experiment flex-1 flex flex-col gap-2">
-          <div class="flex-1 relative">
-            <canvas id="myCanvas"
-                    width="10" height="1"
-                    class=" bg-slate-100 w-full h-full"></canvas>
-            <div class="absolute top-0 right-0 text-center">
-              <a class="cursor-pointer block p-2
+      <main class="experiment flex-1 flex flex-col gap-2">
+        <div class="flex-1 relative">
+          <br>
+
+          <!-- <canvas id="myCanvas" width="10" height="1" class=" bg-slate-100 w-full h-full"></canvas> -->
+          <div class="absolute top-0 right-0 text-center">
+            <a class="cursor-pointer block p-2
                         text-blue-300 hover:text-blue-500
-                        active:text-blue-700"
-                 href="javascript:saveCanvas()"
-                 title="Download canvas as image."
-                 ><ion-icon
-                    name="save"
-                    class="text-3xl"
-                    ></ion-icon><br/>
-                <span class="text-sm">Download</span></a>
-          </div>          </div>
-        </main>
-        <aside class="flex-none flex flex-col gap-2
-                    lg:max-w-sm min-h-52"
-               id="side-note">
-          <h2 class="text-lg font-bold">Simple
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"
-               ><code>requestAnimationFrame</code></a></h2>
-          <p>The value updated by <code>stepperOne</code>
+                        active:text-blue-700" href="javascript:saveCanvas()"
+              title="Download canvas as image."><ion-icon name="save" class="text-3xl"></ion-icon><br />
+              <span class="text-sm">Download</span></a>
+          </div>
+          <div class="wrapper">
+            <div class="game-details">
+              <span class="score">Score: 0</span>
+              <span class="high-score">High Score: 0</span>
+            </div>
+            <div class="play-board"></div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="flex-none flex flex-col gap-2
+                    lg:max-w-sm min-h-52" id="side-note">
+
+        <pre class="text-xs"><code id="valueFromStepperOne"></code></pre>
+
+        <div class="hidden">
+          <h2 class="text-lg font-bold">Normalising speed in
+            a <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code>rAF</code>
+              callback</a></h2>
+          <p>The returned numberline will be of the same
+            scale, irrespective of refresh
+            rate <code>requestAnimationFrame</code></p>
+
+          <p>The value updated by <code>stepperTwo</code>
             is:</p>
-          <pre class="text-xs"><code id="valueFromStepperOne"></code></pre>
+          <pre><code id="valueFromStepperTwo"></code></pre>
+        </div>
 
-          <div class="hidden">
-            <h2 class="text-lg font-bold">Normalising speed in
-              a <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"
-                   ><code>rAF</code> callback</a></h2>
-            <p>The returned numberline will be of the same
-              scale, irrespective of refresh
-              rate <code>requestAnimationFrame</code></p>
+        <div class="hidden">
+          <h3>Using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Javascript
+              <code>class</code></a></h3>
+          <p>The value updated by <code>stepperThree</code>
+            is:</p>
+          <pre><code id="valueFromStepperThree"></code></pre>
+        </div>
 
-            <p>The value updated by <code>stepperTwo</code>
-              is:</p>
-            <pre><code id="valueFromStepperTwo"></code></pre>
-          </div>
-
-          <div class="hidden">
-            <h3>Using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"
-                         >Javascript <code>class</code></a></h3>
-            <p>The value updated by <code>stepperThree</code>
-              is:</p>
-            <pre><code id="valueFromStepperThree"></code></pre>
-          </div>
-          
-        </aside>
-      </div>
+      </aside>
     </div>
-    <script type="text/javascript"
-            src="./canvas-helpers.js"></script>
-    <script type="text/javascript"
-            src="./steppers.js"></script>
-    <script type="text/javascript"
-            src="./domel.js"></script>
-    <script type="text/javascript"
-            src="./clock.js"></script>
-    <script type="text/javascript"
-            src="./experiment.js"></script>
-    <script type="text/javascript"
-            src="./main.js"></script>
-    <script type="text/javascript">
-      main()
-    </script>
-  </body>
+  </div>
+  <script type="text/javascript" src="./canvas-helpers.js"></script>
+  <script type="text/javascript" src="./steppers.js"></script>
+  <script type="text/javascript" src="./domel.js"></script>
+  <script type="text/javascript" src="./clock.js"></script>
+  <script type="text/javascript" src="./experiment.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+  <script type="text/javascript">
+    main()
+  </script>
+</body>
+
 </html>
