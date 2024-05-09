@@ -19,4 +19,9 @@ The  background is an image and applied to the whole body rather than just the c
 
 ## Demo ##
 
-Link to [Working Demo](./demo)
+Link to 
+[Working Demo](https://alok059.github.io/0x08-2d-animation-project/)
+
+
+
+
