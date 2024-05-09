@@ -15,4 +15,5 @@
 ## Preview:
 ![alt text](https://github.com/alok059/0x08-2d-animation-project/blob/master/project_screenshot.png?raw=true)
 
-
+Link to <br>
+[Demo](https://alok059.github.io/0x08-2d-animation-project/demo/)
