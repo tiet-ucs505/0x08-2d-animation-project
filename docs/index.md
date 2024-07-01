@@ -2,7 +2,7 @@
 
 
 ### Created by
-The Pheonix (102103157: Alok Shree Koirala | 102103178: Shree Krishan Singla)
+The Pheonix (102103157: Alok Shree Koirala)
 
 This project aims to create a wind fan that rotates faster with increase in wind speed 
 and changes it colors.
